@@ -7,7 +7,7 @@ var server = express();
 
 server.post(
 	'/ytsearch', 
-	bodyParser.json(),
+	bodyParser.urlencoded(),
 	ytServer
 );
 
@@ -24,6 +24,10 @@ function ytServer(req, res){
 		console.error('Error parsing body');
 		res.status(500).end();
 	}
+}
+
+function searchYt(term) {
+
 }
 
 server.listen(PORT);
