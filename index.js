@@ -16,10 +16,12 @@ function ytServer(req, res){
 			if (body) {
 				console.log('Incoming body', body);
 				console.log('Command', body.command, body.text);
-				res.status(200).end();
+				res.writeHead(200);
+				res.end();
 			} else {
 				console.error('Error parsing body');
-				res.status(500).end();
+				res.writeHead(500);
+				res.end();
 			}
 		});
 	}
