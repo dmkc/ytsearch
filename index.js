@@ -12,9 +12,15 @@ function ytServer(req, res){
 		req.on('data', appendBody);
 		req.on('end', function() {
 			var body = parseBody(reqBody);	
-			console.log('Incoming body', body);
-			console.log('Command', body.command, body.text);
-			res.status(200).end();
+
+			if (body) {
+				console.log('Incoming body', body);
+				console.log('Command', body.command, body.text);
+				res.status(200).end();
+			} else {
+				console.error('Error parsing body');
+				res.status(500).end();
+			}
 		});
 	}
 }
@@ -25,7 +31,6 @@ function parseBody(body) {
 	try {
 		parsedBody = JSON.parse(body);
 	} catch (e) {
-		console.error('Failed to parse body', body);
 	}
 
 	return parsedBody;
