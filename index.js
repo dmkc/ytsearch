@@ -12,11 +12,23 @@ function ytServer(req, res){
 		req.on('data', appendBody);
 		req.on('end', function() {
 			var body = parseBody(reqBody);	
+			var response;
+			var responseString;
 
 			if (body) {
 				console.log('Incoming body', body);
 				console.log('Command', body.command, body.text);
-				res.writeHead(200);
+				response = {text: 'Echo back:' + body.text};
+				responseString = JSON.stringify(response);
+
+				res.writeHead(
+					200,
+					{
+						'Content-Type': 'application/json',
+						'Content-Length': byteCount(responseString)
+					}
+				);
+				res.write(responseString);
 				res.end();
 			} else {
 				console.error('Error parsing body');
@@ -36,6 +48,10 @@ function parseBody(body) {
 	}
 
 	return parsedBody;
+}
+
+function byteCount(s) {
+    return encodeURI(s).split(/%..|./).length - 1;
 }
 
 http.createServer(ytServer).listen(PORT);
