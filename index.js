@@ -34,7 +34,7 @@ function ytServer(req, res){
 				var firstResult = results.items[0];
 				var response = {
 					text: YT_VID_URL + firstResult.id.videoId,
-					//response_type: 'in_channel'
+					response_type: 'in_channel'
 				};
 				return res.json(response).end();
 			})
