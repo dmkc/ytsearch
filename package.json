@@ -1,0 +1,11 @@
+{
+  "name": "ytslackbot",
+  "version": "1.0.0",
+  "description": "youtube slack search bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dmitry Kichenko <dmitry@eventmobi.com> (http://github.com/dmkc)",
+  "license": "ISC"
+}
