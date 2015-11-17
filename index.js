@@ -27,13 +27,23 @@ function ytServer(req, res){
 	var body = req.body;	
 
 	if (body) {
-		console.log('Incoming body', body);
+		console.info('User', body.user_name, 'searched for', body.text);
 		response = {text: 'Echo back:' + body.text};
 		return searchYt(body.text)
 			.then(function(results) {
-				var firstResult = results.items[0];
-				var response = {
-					text: YT_VID_URL + firstResult.id.videoId,
+				var responseText;
+				var response;
+				var videoId;
+
+				if (!results.items.length) {
+					responseText = "Weird, I couldn't find any videos :(";
+				} else {
+					videoId = results.items[0].id.videoId;
+					console.info('Using first result', results.items[0]);
+					responseText = YT_VID_URL + videoId;
+				}
+				response = {
+					text: responseText,
 					response_type: 'in_channel'
 				};
 				return res.json(response).end();
