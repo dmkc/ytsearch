@@ -28,7 +28,7 @@ function ytServer(req, res){
 
 	if (body) {
 		console.info('User', body.user_name, 'searched for', body.text);
-		response = {text: 'Echo back:' + body.text};
+
 		return searchYt(body.text)
 			.then(function(results) {
 				var responseText;
