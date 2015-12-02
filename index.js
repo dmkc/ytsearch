@@ -7,7 +7,6 @@ var util = require('util');
 var PORT = process.env.PORT || 8080;
 var YT_VID_URL = "https://youtube.com/watch?v=";
 var YT_KEY = process.env.YT_KEY;
-// https://www.googleapis.com/youtube/v3/search?q=kids+hall&part=snippet&key=AIzaSyAD96gsoqxg9sx142kQrFqFe9dXGbalFN4
 var YT_URL_TEMPLATE = 'https://www.googleapis.com/youtube/v3/search?q=%s&part=snippet&type=video&key=%s';
 
 if (!YT_KEY) {
